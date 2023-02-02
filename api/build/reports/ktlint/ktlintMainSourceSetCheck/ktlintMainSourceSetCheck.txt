@@ -1,0 +1,2 @@
+[90mD:\git\MyRepo\werewolf\api\src\main\kotlin\kr\weareboard\werewolf\api\config\[0mSecurityConfig.kt[90m:[0m10[90m:1:[0m Unused import[90m (no-unused-imports)[0m
+[90mD:\git\MyRepo\werewolf\api\src\main\kotlin\kr\weareboard\werewolf\api\config\[0mSecurityConfig.kt[90m:[0m38[90m:1:[0m Unexpected indentation (5) (should be 4)[90m (indent)[0m

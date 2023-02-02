@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: leehj12!$
+    ports:
+      - '58306:3306'
+    volumes:
+      - mariadb:/var/lib/mysql
+
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    command:
+      - --requirepass "leehj12!$"
+    ports:
+      - '6370:6370'
+    volumes:
+      - redis:/var/lib/redis
+volumes:
+  mariadb:
+  redis:
