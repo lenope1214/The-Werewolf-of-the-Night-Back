@@ -4,6 +4,7 @@ import kr.weareboard.werewolf.domain.entity.user.enum.OAuth2Provider
 import kr.weareboard.werewolf.domain.entity.user.enum.UserRoleType
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest
@@ -18,6 +19,13 @@ class UserOAuth2Service(
 ) : DefaultOAuth2UserService() {
     //    private val httpSession: HttpSession? = null
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
+
+    @Value("\${spring.security.oauth2.client.registration.kakao.redirect-uri}")
+    private val redirectUri: String? = null
+
+    init {
+        log.info("redirect uri : $redirectUri")
+    }
 
     @Throws(OAuth2AuthenticationException::class)
     override fun loadUser(userRequest: OAuth2UserRequest): OAuth2User {

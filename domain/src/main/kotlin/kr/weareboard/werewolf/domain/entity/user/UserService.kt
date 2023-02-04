@@ -34,7 +34,7 @@ class UserService(
     @Value("\${auth.kakao.key.admin}")
     private lateinit var adminKey: String
 
-    @Value("\${auth.kakao.logout.redirect-url}")
+    @Value("\${auth.kakao.logout.redirect.url}")
     private lateinit var kakaoLogoutRedirectUrl: String
 
     fun refreshToken(refreshTokenRequest: RefreshTokenRequest): JwtToken {

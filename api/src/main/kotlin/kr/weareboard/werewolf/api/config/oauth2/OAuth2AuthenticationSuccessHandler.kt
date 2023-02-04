@@ -20,6 +20,9 @@ class OAuth2AuthenticationSuccessHandler : SimpleUrlAuthenticationSuccessHandler
     @Value("\${spring.profiles.active:local}")
     private val profiles: String? = null
 
+    @Value("\${auth.kakao.login.redirect.url}")
+    private val kakaoRedirectUrl: String? = null
+
     @Throws(IOException::class)
     override fun onAuthenticationSuccess(
         request: HttpServletRequest,
@@ -52,24 +55,18 @@ class OAuth2AuthenticationSuccessHandler : SimpleUrlAuthenticationSuccessHandler
 //        logger.info { "profiles : $profiles" }
 
 //        val local ="http://localhost:5173/oauth2/redirect?token=$token"
-        val local = "http://localhost:3000/kakaoLogin?token=$token"
+        val local = "http://localhost:5173/kakaoLogin?token=$token"
 
-        val dev = "http://localhost:3000/kakaoLogin?token=$token"
-//        val prod = "http://localhost:3000/kakaoLogin?token=$token"
-        val prod = "https://plz-front-highjoon.vercel.app/kakaoLogin?token=$token"
-        val url: String? = profiles?.let {
-            when (it) {
-                "local" -> local
-                "dev" -> dev
-                else -> prod
-            }
-        }
+        val dev = "http://localhost:5173/kakaoLogin?token=$token"
+
+        val path = "/kakaoLogin?token=$token"
+        val url: String? = kakaoRedirectUrl + path
 //        return UriComponentsBuilder.fromUriString("/oauth2/redirect/$token")
 //        return UriComponentsBuilder.fromUriString("http://localhost:5173/oauth2/redirect/$token")
 //        return UriComponentsBuilder.fromUriString(url ?: "/oauth2/redirect/$token")
 //            .build().toUriString()
 
-        return UriComponentsBuilder.fromUriString(url ?: prod)
+        return UriComponentsBuilder.fromUriString(url)
             .build().toUriString()
     }
 }
