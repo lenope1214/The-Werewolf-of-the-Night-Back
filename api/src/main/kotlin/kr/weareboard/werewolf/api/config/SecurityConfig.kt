@@ -11,9 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -34,7 +32,7 @@ class SecurityConfig(
     private val jwtExceptionFilter: JwtExceptionFilter,
     private val oAuth2AuthenticationSuccessHandler: OAuth2AuthenticationSuccessHandler,
     private val userOAuth2Service: UserOAuth2Service,
-    ) {
+) {
 
     @Bean // 더블 슬래쉬 허용
     fun defaultHttpFirewall(): HttpFirewall {
@@ -42,7 +40,7 @@ class SecurityConfig(
     }
 
     @Bean
-    fun bCryptPasswordEncoder(): BCryptPasswordEncoder{
+    fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
         return BCryptPasswordEncoder()
     }
 
@@ -96,16 +94,5 @@ class SecurityConfig(
             .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter::class.java)
 
         return http.build()
-    }
-
-    @Bean
-    fun configure(): WebSecurityCustomizer? {
-        return WebSecurityCustomizer { web: WebSecurity ->
-            web.ignoring().requestMatchers(
-                "/v3/api-docs/**",
-                "/swagger-ui/**",
-                "/api/v1/login" // 임시
-            )
-        }
     }
 }
