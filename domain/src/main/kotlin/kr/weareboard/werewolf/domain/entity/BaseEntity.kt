@@ -24,11 +24,11 @@ open class BaseEntity {
     private var deletedAt: LocalDateTime? = null
     private var deletedBy: String? = null
 
-    fun createdBy(username: String) {
+    fun create(username: String) {
         this.createdBy = username
     }
 
-    fun updatedBy(username: String) {
+    fun update(username: String) {
         this.updatedBy = username
     }
 
