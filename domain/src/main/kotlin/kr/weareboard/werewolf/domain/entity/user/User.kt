@@ -18,7 +18,7 @@ import kr.weareboard.werewolf.domain.entity.room.Room
 @Table(name = "tb_user")
 class User(
 
-    @Column(name = "username", length = 20, nullable = false)
+    @Column(name = "username", length = 100, nullable = false)
     @Comment(value = "사용자 로그인 아이디")
     private val username: String,
 
