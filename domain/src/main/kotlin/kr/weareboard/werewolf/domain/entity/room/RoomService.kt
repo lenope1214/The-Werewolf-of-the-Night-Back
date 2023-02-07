@@ -3,6 +3,7 @@ package kr.weareboard.werewolf.domain.entity.room
 import kr.weareboard.werewolf.domain.entity.room.dto.request.RoomCreateRequestDto
 import kr.weareboard.werewolf.domain.entity.room.dto.response.RoomResponseDto
 import kr.weareboard.werewolf.domain.entity.user.UserRepository
+import kr.weareboard.werewolf.domain.entity.user.UserService
 import org.springframework.stereotype.Service
 
 @Service
@@ -10,11 +11,16 @@ class RoomService(
     private val roomRepository: RoomRepository,
     private val roomQueryRepository: RoomQueryRepository,
     private val userRepository: UserRepository,
+    private val userService: UserService,
 ) {
 
     // save room
     fun saveRoom(roomCreateResponseDto: RoomCreateRequestDto): Long {
+        val loginUser = userService.getLoginUserInfo()
+
         val room = roomCreateResponseDto.toEntity()
+        room.create(loginUser.username)
+
         return roomRepository.save(room).id!!
     }
 
