@@ -33,9 +33,6 @@ dependencies {
     // jakarta.servlet 사용을 위한 라이브러리 - filter에서 사용 9버전까지 사용 가능하며 10버전 이후론 삭제된듯하다.
 //    api("org.apache.tomcat.embed:tomcat-embed-core:9.0.65")
 
-    api("org.springdoc:springdoc-openapi-ui:1.6.14")
-    api("org.springdoc:springdoc-openapi-kotlin:1.6.14")
-
 
 
     implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1")

@@ -8,13 +8,12 @@ import kr.weareboard.werewolf.domain.entity.user.UserOAuth2Service
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.config.Customizer
-import org.springframework.security.config.Customizer.withDefaults
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer.AuthorizationManagerRequestMatcherRegistry
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
@@ -35,7 +34,7 @@ class SecurityConfig(
     private val jwtExceptionFilter: JwtExceptionFilter,
     private val oAuth2AuthenticationSuccessHandler: OAuth2AuthenticationSuccessHandler,
     private val userOAuth2Service: UserOAuth2Service,
-) {
+    ) {
 
     @Bean // 더블 슬래쉬 허용
     fun defaultHttpFirewall(): HttpFirewall {
@@ -95,6 +94,18 @@ class SecurityConfig(
             )
             // jwt 토큰 필터에서 나온 에러 처리용 필터
             .addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter::class.java)
+
         return http.build()
+    }
+
+    @Bean
+    fun configure(): WebSecurityCustomizer? {
+        return WebSecurityCustomizer { web: WebSecurity ->
+            web.ignoring().requestMatchers(
+                "/v3/api-docs/**",
+                "/swagger-ui/**",
+                "/api/v1/login" // 임시
+            )
+        }
     }
 }

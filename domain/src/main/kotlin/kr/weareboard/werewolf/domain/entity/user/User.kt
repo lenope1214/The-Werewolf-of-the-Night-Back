@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.time.LocalDateTime
 import jakarta.persistence.*
+import kr.weareboard.werewolf.domain.entity.room.Room
 
 @Where(clause = "deleted_at IS NULL")
 @Entity
@@ -49,6 +50,12 @@ class User(
     @Column(name = "changePassword", length = 50, nullable = false)
     @Comment(value = "사용자 비밀번호 변경 유무")
     val changePassword: Boolean = false,
+
+    // 참가한 룸 정보
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH])
+    @JoinColumn(name = "room_id")
+    @Comment(value = "참가한 룸 정보")
+    var room: Room? = null,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -50,10 +50,6 @@ subprojects {
         // databases
         implementation("org.mariadb.jdbc:mariadb-java-client:3.1.0")
 
-        // swagger v3
-        implementation("org.springdoc:springdoc-openapi-ui:1.6.14")
-        implementation("org.springdoc:springdoc-openapi-kotlin:1.6.14")
-
         // logback to logstash 직접 보내는 인코더
 //        implementation("net.logstash.logback:logstash-logback-encoder:7.2")
 

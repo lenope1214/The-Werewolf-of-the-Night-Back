@@ -60,7 +60,7 @@ class OAuth2AuthenticationSuccessHandler : SimpleUrlAuthenticationSuccessHandler
         val dev = "http://localhost:5173/kakaoLogin?token=$token"
 
         val path = "/kakaoLogin?token=$token"
-        val url: String? = kakaoRedirectUrl + path
+        val url: String = kakaoRedirectUrl + path
 //        return UriComponentsBuilder.fromUriString("/oauth2/redirect/$token")
 //        return UriComponentsBuilder.fromUriString("http://localhost:5173/oauth2/redirect/$token")
 //        return UriComponentsBuilder.fromUriString(url ?: "/oauth2/redirect/$token")

@@ -1,3 +1,84 @@
+server:
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      force-response: true
+
+spring:
+  profiles:
+    active: local
+    group:
+      "local": "localdb,common"
+      "dev": "localdb,common"
+      "prod": "proddb,common"
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+      time: HH:mm:ss
+
+  servlet:
+    multipart:
+      max-request-size: 5MB
+      max-file-size: 5MB
+  #      max-request-size: 10240KB #?? ?? ??? : 10MB
+  #      max-file-size: 10240KB #?? ?? ??? : 10MB
+
+#  redis:
+#    lettuce:
+#      pool:
+#        max-active: 5 # pool에 할당될 수 있는 커넥션 최대수
+#        max-idle: 5 # pool의 'idle' 커넥션 최대수
+#        min-idle: 2
+#    host: localhost
+#    port: 6370
+
+logging:
+  pattern:
+    file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    kr.weareboard.werewolf.api: debug
+#    org:
+#      hibernate:
+#        sql: debug # debug로 하지 않으면 debug, info log 2개씩 나오게 됨
+#        tool.hbm2ddl: debug
+#        type.descriptor.sql: trace # Hibernate 4,5
+#        orm.jdbc.bind: trace # Hibernate 6
+
+auth:
+  kakao:
+    key:
+      admin: a9d0e932ded3f126dc0a52bd275ee73d
+
+storage:
+  prefix: files
+# storage location은 profiles별로 설정
+#  location: files
+
+springdoc:
+  version: 1.0.2
+  api-docs:
+    path: /api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+    display-query-params-without-oauth2: true
+    doc-expansion: none
+    persist-authorization: true
+  paths-to-match:
+    - /api/**
+
+---
 spring:
   config:
     activate:
@@ -86,70 +167,6 @@ storage:
   filePath: file:////D:/git/LP-PLAYLIST-BACKEND/files/
 
 
-
----
-server:
-  servlet:
-    context-path: /
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
-      force-response: true
-
-spring:
-  profiles:
-    active: local
-    group:
-      "local": "localdb,common"
-      "dev": "localdb,common"
-      "prod": "proddb,common"
-
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-    format:
-      date: yyyy-MM-dd
-      date-time: yyyy-MM-dd HH:mm:ss
-      time: HH:mm:ss
-
-  servlet:
-    multipart:
-      max-request-size: 5MB
-      max-file-size: 5MB
-  #      max-request-size: 10240KB #?? ?? ??? : 10MB
-  #      max-file-size: 10240KB #?? ?? ??? : 10MB
-
-#  redis:
-#    lettuce:
-#      pool:
-#        max-active: 5 # pool에 할당될 수 있는 커넥션 최대수
-#        max-idle: 5 # pool의 'idle' 커넥션 최대수
-#        min-idle: 2
-#    host: localhost
-#    port: 6370
-
-logging:
-  pattern:
-    file: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
-  level:
-    kr.weareboard.werewolf.api: debug
-#    org:
-#      hibernate:
-#        sql: debug # debug로 하지 않으면 debug, info log 2개씩 나오게 됨
-#        tool.hbm2ddl: debug
-#        type.descriptor.sql: trace # Hibernate 4,5
-#        orm.jdbc.bind: trace # Hibernate 6
-
-auth:
-  kakao:
-    key:
-      admin: a9d0e932ded3f126dc0a52bd275ee73d
-
-storage:
-  prefix: files
-# storage location은 profiles별로 설정
-#  location: files
 
 ---
 spring:
