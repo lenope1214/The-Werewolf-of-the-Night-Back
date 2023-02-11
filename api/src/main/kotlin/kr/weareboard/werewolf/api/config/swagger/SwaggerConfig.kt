@@ -40,7 +40,7 @@ class SwaggerConfig {
             .type(SecurityScheme.Type.HTTP)
             .`in`(SecurityScheme.In.HEADER)
             .bearerFormat("JWT")
-            .scheme("bearer");
+            .scheme("bearer")
 
         return OpenAPI()
             .components(

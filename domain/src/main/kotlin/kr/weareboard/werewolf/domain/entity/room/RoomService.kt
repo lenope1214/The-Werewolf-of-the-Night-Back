@@ -1,9 +1,11 @@
 package kr.weareboard.werewolf.domain.entity.room
 
 import kr.weareboard.werewolf.domain.entity.room.dto.request.RoomCreateRequestDto
+import kr.weareboard.werewolf.domain.entity.room.dto.request.RoomSearchCondition
 import kr.weareboard.werewolf.domain.entity.room.dto.response.RoomResponseDto
 import kr.weareboard.werewolf.domain.entity.user.UserRepository
 import kr.weareboard.werewolf.domain.entity.user.UserService
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
@@ -30,7 +32,12 @@ class RoomService(
     }
 
     // find room list by name contains
-    fun findRoomListByNameContains(name: String): List<RoomResponseDto> {
-        return roomQueryRepository.findByNameContains(name)
+    fun findAll(
+        searchCondition: RoomSearchCondition,
+        pageable: Pageable = Pageable.unpaged(),
+    ): List<RoomResponseDto> {
+        return roomQueryRepository.findAll(searchCondition, pageable)
     }
+
+
 }

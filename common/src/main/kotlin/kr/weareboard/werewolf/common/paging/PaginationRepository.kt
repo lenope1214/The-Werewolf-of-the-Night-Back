@@ -1,4 +1,4 @@
-package kr.weareboard.werewolf.common.paging
+package kr.co.jsol.core.paging
 
 import com.querydsl.core.types.dsl.BooleanExpression
 import com.querydsl.core.types.dsl.Expressions

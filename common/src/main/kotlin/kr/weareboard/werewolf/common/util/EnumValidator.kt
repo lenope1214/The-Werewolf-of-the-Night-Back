@@ -1,4 +1,4 @@
-package kr.weareboard.werewolf.common.util
+package kr.co.jsol.core.util
 
 import jakarta.validation.ConstraintValidator
 import jakarta.validation.ConstraintValidatorContext
@@ -11,7 +11,7 @@ class EnumValidator : ConstraintValidator<ValidEnum, Enum<*>> {
 
     override fun isValid(value: Enum<*>, context: ConstraintValidatorContext): Boolean {
         var result = false
-        val enumValues: Array<out Enum<*>>? = annotation!!.enumClass.java.enumConstants
+        val enumValues: Array<out Enum<*>>? = annotation.enumClass.java.enumConstants
         if (enumValues != null) {
             for (enumValue in enumValues) {
                 if (value === enumValue) {

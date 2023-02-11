@@ -1,8 +1,7 @@
 HELP.md
 .gradle
 build/
-api/build/
-logs/
+sslogs/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

@@ -20,7 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.firewall.DefaultHttpFirewall
 import org.springframework.security.web.firewall.HttpFirewall
 
-
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록. 필터체인(묶음)에 필터등록
 @EnableMethodSecurity(
@@ -72,7 +71,6 @@ class SecurityConfig(
             .and()
             .formLogin()
             .disable()
-
             // oauth2 로그인 설정 추가
             .logout()
             .logoutSuccessUrl("/")

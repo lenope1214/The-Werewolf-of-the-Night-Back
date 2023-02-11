@@ -1,4 +1,4 @@
-package kr.weareboard.werewolf.common.util
+package kr.co.jsol.core.util
 
 import jakarta.validation.Constraint
 import jakarta.validation.Payload
