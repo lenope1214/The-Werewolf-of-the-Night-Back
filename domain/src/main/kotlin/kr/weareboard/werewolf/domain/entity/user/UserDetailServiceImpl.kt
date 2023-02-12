@@ -28,6 +28,9 @@ class UserDetailServiceImpl(
             username = email,
             password = passwordEncoder.encode("1234"),
             name = nickname,
+            nickname = nickname.substring(0, nickname.let {
+                if(it.length < 19) it.length else 19
+            }),
             role = UserRoleType.ROLE_USER,
             email = email,
             provider = OAuth2Provider.KAKAO,

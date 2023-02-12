@@ -26,9 +26,13 @@ class User(
     @Comment(value = "사용자 로그인 비밀번호")
     private var password: String,
 
-    @Column(name = "name", length = 50, nullable = false)
+    @Column(name = "name", length = 255, nullable = false)
     @Comment(value = "사용자 이름(성함)")
     var name: String,
+
+    @Column(name = "nickname", length = 20, nullable = false)
+    @Comment(value = "사용자 이름(성함)")
+    var nickname: String,
 
     @Column(name = "email", length = 255, nullable = false)
     @Comment(value = "사용자 이메일")
@@ -68,6 +72,7 @@ class User(
 
     fun updateInfo(userUpdateRequest: UserUpdateRequest) {
         this.name = userUpdateRequest.name ?: this.name
+        this.nickname = userUpdateRequest.nickname ?: this.nickname
     }
 
     fun login() {
@@ -117,10 +122,6 @@ class User(
     override
     fun toString(): String {
         return "User(id=$id, username='$username', password='$password', name='$name', role=$role, changePassword=$changePassword, loginAt=$loginAt)"
-    }
-
-    fun toRefererString(): String {
-        return "User(id=$id, username='$username', password='$password', name='$name', role=$role)"
     }
 
     fun updateProvider(provider: OAuth2Provider, providerId: String) {

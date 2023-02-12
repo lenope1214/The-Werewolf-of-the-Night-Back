@@ -3,11 +3,15 @@ version: '3.1'
 services:
 
   mariadb:
-    container_name: mariadb
+    container_name: werewolf-mariadb
     image: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: leehj12!$
+      MARIADB_ROOT_PASSWORD: leehj12!$
+      MARIADB_DATABASE: werewolf
+      MARIADB_USER: werewolf
+      MARIADB_PASSWORD: werewolf1234
+
     ports:
       - '58306:3306'
     volumes:

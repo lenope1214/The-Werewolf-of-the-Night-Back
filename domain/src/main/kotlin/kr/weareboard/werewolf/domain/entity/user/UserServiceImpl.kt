@@ -23,9 +23,7 @@ import org.springframework.security.authentication.AuthenticationManager
 @Service
 class UserServiceImpl(
     private val jwtTokenProvider: JwtTokenProvider,
-    private val authenticationManager: AuthenticationManager,
     private val userRepository: UserRepository,
-    private val userQueryRepository: UserQueryRepository,
     private val passwordEncoder: PasswordEncoder,
 ): UserService {
 
